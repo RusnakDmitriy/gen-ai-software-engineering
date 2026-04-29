@@ -1,0 +1,32 @@
+### Create transaction
+POST http://localhost:3000/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": 100.50,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+### List all transactions
+GET http://localhost:3000/transactions
+
+### Filter transactions by account
+GET http://localhost:3000/transactions?accountId=ACC-12345
+
+### Filter transactions by type
+GET http://localhost:3000/transactions?type=transfer
+
+### Filter transactions by date range
+GET http://localhost:3000/transactions?from=2026-01-01T00:00:00.000Z&to=2026-12-31T23:59:59.999Z
+
+### Get transaction by id (replace with real id)
+GET http://localhost:3000/transactions/replace-with-transaction-id
+
+### Get account balance
+GET http://localhost:3000/accounts/ACC-12345/balance
+
+### Get account summary (additional feature)
+GET http://localhost:3000/accounts/ACC-12345/summary
