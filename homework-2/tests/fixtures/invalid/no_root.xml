@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ticket>
+  <customer_id>cust_invalid_001</customer_id>
+  <customer_email>alice@example.com</customer_email>
+  <customer_name>Alice</customer_name>
+  <subject>Test</subject>
+  <description>This XML has no root tickets element</description>
+</ticket>

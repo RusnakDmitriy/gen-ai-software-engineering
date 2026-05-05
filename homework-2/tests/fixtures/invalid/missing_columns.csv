@@ -1,0 +1,6 @@
+customer_id,customer_email,customer_name,description,priority
+cust_bad_001,invalid-email,Test User,Missing subject field but has priority,high
+cust_bad_002,alice@example.com,Alice,Description too short,urgent
+cust_bad_003,,Bob Smith,Missing email,medium
+cust_bad_004,carol@example.com,,Missing name,low
+cust_bad_005,dave@example.com,Dave,Description is way too short here,medium
