@@ -1,8 +1,8 @@
 # Intelligent Customer Support Ticket System
 
-> **Student Name**: [Your Name]
-> **Date Submitted**: [Date]
-> **AI Tools Used**: [e.g., Cursor, Claude Sonnet, GitHub Copilot]
+> **Student Name**: Rusnak Dmytro
+> **Date Submitted**: 05.05.2026
+> **AI Tools Used**: Cursor
 
 ---
 
