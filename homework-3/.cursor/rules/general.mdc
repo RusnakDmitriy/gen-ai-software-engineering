@@ -1,0 +1,26 @@
+---
+description: Lumen Cards — project context and rule precedence
+alwaysApply: true
+---
+
+# Lumen Cards — Project Context
+
+EU-regulated, neobank-style **virtual card lifecycle platform** backed by **Stripe Issuing**. Designed **out-of-CDE** (no PAN/CVV ever touches our infrastructure).
+
+## Stack
+
+Node 20 LTS · TypeScript `strict` · NestJS 10 · PostgreSQL 16 · Redis 7 · Kafka · AWS (EU regions only).
+
+## Authoritative documents (read first when in doubt)
+
+- `specification.md` — Parts A (features), B (compliance/security), C (API surface), D (testing), E (prompt patterns). Task IDs: **A1–A15, B1–B11, C1–C13, D1–D12**.
+- `agents.md` — operating guide, Definition of Done, forbidden behaviors, edge-case tables.
+
+## Rule precedence (when something conflicts)
+
+1. **Compliance / security non-negotiables** (`security-compliance.mdc`).
+2. **Task IDs** in `specification.md`.
+3. Other `.cursor/rules/*.mdc` files.
+4. Stylistic judgement.
+
+When unsure, **ask** rather than guess. PR titles cite the Task ID, e.g. `feat(cards-svc): A2 — issuance saga with Stripe Issuing adapter`.

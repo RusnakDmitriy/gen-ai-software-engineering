@@ -1,0 +1,38 @@
+---
+description: PCI / GDPR / PSD2 non-negotiables — never violate
+alwaysApply: true
+---
+
+# Security & Compliance — Hard Rules
+
+## Card data (out-of-CDE forever)
+
+**Never** persist, log, trace, cache, or render **PAN, CVV, full expiry, track data, CVC2** — anywhere, in any field, even temporarily. `last4` and `brand` are the only Stripe-derived fields allowed locally. PAN/CVV reveal is **exclusively** via Stripe Issuing Elements + ephemeral key (Task **A8**).
+
+## Logging
+
+Use the injected `LumenLogger`. Banned keys (auto-scrubbed): `pan, cvv, cvc, expiry, track, ephemeralKey, secret, password, sessionId, authorization, cookie`. `console.*` is **rejected by CI** in `src/**`.
+
+```typescript
+// ❌ BAD
+console.log('Issued card', card);
+
+// ✅ GOOD
+this.logger.info('card.issued', { cardId: card.id, correlationId });
+```
+
+## Authn / SCA / RBAC
+
+- Sensitive actions (reveal, replace, dispute open, limit increase) require `@ScaRequired` (Task **B1**). Never check SCA inline in a handler.
+- Internal routes require an RBAC matrix entry (Task **B8**). **No entry = DENY** (never "allow by default").
+- Service-to-service calls are mTLS; no shared API keys.
+
+## GDPR
+
+- Personal data crossing service boundaries in events is pseudonymized via the publisher hook (Task **B4**) unless the topic is on the essential-consumer allow-list.
+- Adding any personal-data field → update `docs/ropa.md` in the **same** PR. Free-text fields are stripped from event payloads, not pseudonymized.
+
+## Egress / residency
+
+- No direct third-party calls from `bff-*`. Route through domain services.
+- All AWS resources are EU-only. Cross-region creation is rejected at deploy time by `infra/policies/data-residency.rego`.

@@ -1,0 +1,48 @@
+---
+description: REST API conventions (OpenAPI-first) for bff-user and bff-internal
+globs: services/bff-*/**/*.ts,libs/contracts/openapi/**
+alwaysApply: false
+---
+
+# API Conventions
+
+## OpenAPI 3.1 is the source of truth (Task C3)
+
+`libs/contracts/openapi/{bff-user,bff-internal}.yaml` is authoritative. Controllers match via `@nestjs/swagger` decorators. The CI drift gate fails the build on mismatch — update the YAML in the same PR as the controller.
+
+## Versioning (Task C1)
+
+URL prefix `/v1/...`. Breaking change → `/v2/...` with a 90-day overlap and a `docs/migrations/<date>-<slug>.md` note. Deprecated routes emit `Deprecation: true` and `Sunset: <RFC 7231 date>`.
+
+## Status code mapping (canonical)
+
+`200` ok · `201` created · `202` accepted (async) · `204` no body · `400` syntax · `401` auth · `403` rbac · `404` not-found (also for cross-user existence-leak avoidance) · `409` conflict / illegal transition / version conflict · `415` media · `422` semantic / validation · `429` rate-limited · `5xx` server.
+
+## Error envelope (Task C2)
+
+```json
+{
+  "error": {
+    "code": "card.illegal_transition",
+    "message": "Card is already CLOSED.",
+    "correlationId": "01H...",
+    "retryable": false
+  }
+}
+```
+
+Every new `code` is registered in `docs/error-codes.md` and the central TS catalog.
+
+## Pagination, sorting, filtering (Task C4)
+
+Cursor-based: `?cursor=<opaque>&limit=<1..100>` (default 20). Sortable fields are an endpoint-specific whitelisted tuple — **never** accept a free-text `sort` parameter.
+
+## Middleware always in effect
+
+- `Idempotency-Key` required on every non-GET, non-HEAD route (Task **C5**).
+- `X-Correlation-Id` honored if valid ULID, else generated (Task **C6**).
+- Security headers + CORS allow-list set globally (Task **C7**).
+
+## Forbidden
+
+`PUT` for partial updates (use `PATCH` + `application/merge-patch+json`) · wildcard CORS origins · logging request/response bodies of routes in `sensitive-routes.yaml` (reveal, MFA, DSR, evidence upload) · returning `403` where `404` is the existence-leak-safe answer.

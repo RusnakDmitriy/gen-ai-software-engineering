@@ -1,0 +1,53 @@
+---
+description: PostgreSQL schema and persistence conventions
+globs: services/**/migrations/**,services/**/*.entity.ts,services/**/*.repository.ts
+alwaysApply: false
+---
+
+# Database Conventions
+
+## Identifiers
+
+- Public IDs are **ULIDs** prefixed by entity type (`card_01H...`, `txn_01H...`, `dsp_01H...`). Stored as `TEXT` (or `CHAR(30)`). **Never** `SERIAL` / `BIGSERIAL` / `UUID v4`.
+- Stripe-side IDs are opaque strings stored only on the boundary entity.
+
+## Monetary fields
+
+- `BIGINT` minor units only. Currency `CHAR(3) NOT NULL` (MVP: `EUR`).
+- **Never** `NUMERIC` / `REAL` / `DOUBLE PRECISION` for money.
+
+```sql
+-- ✅ GOOD
+amount_minor BIGINT NOT NULL,
+currency     CHAR(3)  NOT NULL DEFAULT 'EUR',
+CHECK (currency = 'EUR')
+
+-- ❌ BAD
+amount NUMERIC(10,2)
+```
+
+## Timestamps
+
+Always `TIMESTAMPTZ` in UTC. Application boundary uses RFC 3339 with `Z`.
+
+## Concurrency
+
+Every aggregate has `version INT NOT NULL DEFAULT 0`. Updates use optimistic locking; conflicts surface `409 resource.version_conflict` (never auto-retry).
+
+## Indexes
+
+- One index per new query pattern, documented in the migration's comment block.
+- Cursor-paginated lists require a composite index `(partition_key, sort_col DESC, id DESC)`.
+
+## Migrations (`node-pg-migrate`)
+
+Forward + rollback required. Schema-changing PRs include the migration in the same commit. No `DROP COLUMN` without a deprecation step (rename → null-allow → backfill → drop in a later release).
+
+## Idempotency & outbox tables (per service)
+
+- `idempotency_keys(key, user_id, route, request_hash, response_status, response_body, response_headers, created_at, expires_at)` — TTL 24 h (Task **C5**).
+- `outbox(id, topic, key, payload, headers, created_at, published_at NULL)` — index `(published_at NULL, created_at)` (Task **A13**).
+
+## Forbidden
+
+Raw `UPDATE` that bypasses the domain FSM · columns for `pan`, `cvv`, `expiry`, `track*` (do **not** add them, ever) · cross-service `JOIN`s (each service owns its schema).
