@@ -1,0 +1,45 @@
+---
+description: NestJS service conventions for Lumen Cards
+globs: services/**/*.ts
+alwaysApply: false
+---
+
+# Backend Service Conventions
+
+## Layering
+
+`Controller → Application handler → Domain entity/FSM → Repository`.
+
+- Domain layer (`*.entity.ts`, `*.fsm.ts`) has **zero** infra imports — no NestJS, no ORM, no Stripe SDK.
+- `bff-*` services are thin HTTP adapters. **No domain logic** there.
+
+## TypeScript
+
+- `strict: true`, `noUncheckedIndexedAccess: true`, `exactOptionalPropertyTypes: true`.
+- No `any`. No `@ts-ignore` (use `@ts-expect-error <reason>` with justification on the same line).
+- Branded ID types for every entity id:
+
+```typescript
+type CardId = string & { readonly __brand: 'CardId' };
+const CardId = (raw: string): CardId => {
+  if (!/^card_[0-9A-HJKMNP-TV-Z]{26}$/.test(raw)) {
+    throw new LumenError('id.invalid', { field: 'cardId' });
+  }
+  return raw as CardId;
+};
+```
+
+## Errors
+
+Throw `LumenError` only, with a code from the central catalog (Task **C2**). The global `LumenExceptionFilter` renders the envelope `{ error: { code, message, correlationId, retryable, details? } }`. Never throw raw `Error` or strings across module boundaries.
+
+## Cross-cutting (mandatory on every non-GET handler)
+
+- `Idempotency-Key` enforced by the shared middleware (Task **C5**).
+- `correlationId` propagated end-to-end (Task **C6**).
+- Audit event emitted in the **same DB transaction** as the state change (Tasks **B2**, **A13**).
+- Optimistic version check applied (conflicts → `409 resource.version_conflict`, never silent retry).
+
+## Forbidden
+
+`console.*` · raw `Error` thrown · `Number` for money · direct Stripe SDK calls from `bff-*` · raw `UPDATE` that bypasses the FSM · `process.env` access outside `@nestjs/config`.

@@ -1,0 +1,46 @@
+---
+description: Kafka topics, transactional outbox, idempotent consumers, webhook ingress
+globs: services/**/outbox/**,services/**/consumers/**,services/**/webhooks/**,libs/events/**
+alwaysApply: false
+---
+
+# Events & Messaging
+
+## Transactional outbox (Task A13)
+
+Event rows are written **in the same DB transaction** as the state change. The publisher reads unpublished rows, sends to Kafka, marks `published_at`. **Never** publish to Kafka directly from a handler.
+
+```typescript
+// ✅ GOOD — atomic with the state change
+await tx.run(async () => {
+  await cardRepo.save(card, tx);
+  await outbox.append('lumen.cards.card.frozen.v1', { cardId: card.id }, tx);
+});
+
+// ❌ BAD — publish can succeed without the DB commit
+await cardRepo.save(card);
+await kafka.produce(...);
+```
+
+## Topic naming
+
+`lumen.<context>.<entity>.<event>.v<n>` — e.g. `lumen.cards.card.frozen.v1`. Partition key is the aggregate id. Bump `v<n>` on breaking schema changes.
+
+## Schemas (Avro in `libs/events/`)
+
+- Every `userId`-like field on non-essential consumer topics is annotated `pseudonymized: true` (Task **B4**). CI fails if missing.
+- Free-text fields (e.g. card `nickname`, dispute notes) are **stripped** from event payloads — not pseudonymized.
+
+## Consumers (always idempotent)
+
+- Dedupe by `eventId` ULID via an inbox table (write-ahead, then process).
+- Stripe webhooks: verify signature on the **raw body**, enforce 5-min timestamp tolerance, accept the prior secret for a 24 h grace window during rotation (Task **B6**).
+- Out-of-order events are tolerated — project deterministically by upserting and reconciling on the later event.
+
+## Required headers on every published event
+
+`correlationId, causationId, eventId, schemaVersion`.
+
+## Forbidden
+
+`kafka.produce` called from controllers/handlers · assuming exactly-once delivery · logging raw webhook bodies · suppressing inbox conflicts ("event already processed" is **not** an error — return `200`).

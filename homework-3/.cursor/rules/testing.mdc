@@ -1,0 +1,55 @@
+---
+description: Test categories, coverage gates, and determinism rules
+globs: services/**/*.spec.ts,libs/**/*.spec.ts,services/**/test/**,libs/**/test/**,tools/**/*.spec.ts
+alwaysApply: false
+---
+
+# Testing Conventions
+
+## Required test categories per PR (Part D)
+
+| If the PR touches… | Add… |
+|---|---|
+| Domain logic | Unit (D1) |
+| DB / Kafka / Redis / Stripe | Integration with Testcontainers (D2) + Stripe sandbox harness (D3) |
+| OpenAPI / DTO | Contract test (D4) |
+| FSM, pagination, idempotency, money | Property-based with `fast-check` (D5) |
+| New route / role / SCA gate / log call | Security tests (D8) |
+| Audit, GDPR, retention | Compliance tests (D9) |
+| Hot path | k6 scenario (D7), nightly |
+
+## Coverage gates
+
+- Domain services (`cards-svc`, `disputes-svc`, `audit-svc`): **≥ 85% line / 90% branch**.
+- `libs/*`: **≥ 90% / 95%**.
+- BFFs: **≥ 70% / 75%**.
+- Lowering coverage on a touched file fails CI.
+
+## Determinism
+
+- Time: `injectedClock.now()` — never `Date.now()` directly. Advance with `clock.advance(...)`.
+- Randomness: inject `Random` — never `Math.random()` directly.
+- ULIDs: seeded generator in tests.
+- No live network in CI. Stripe sandbox tests are tagged `@stripe-sandbox` and run only nightly.
+
+```typescript
+// ❌ BAD — flaky, magic numbers, real wall clock
+it('expires after 24h', async () => {
+  await sleep(86400000);
+  expect(await isExpired(key)).toBe(true);
+});
+
+// ✅ GOOD — deterministic clock advance
+it('expires after 24h', () => {
+  clock.advance({ hours: 24 });
+  expect(isExpired(key)).toBe(true);
+});
+```
+
+## File naming
+
+`foo.ts` → `foo.spec.ts` (unit) · `foo.integration.spec.ts` · `foo.property.spec.ts` · `foo.contract.spec.ts`.
+
+## Forbidden
+
+`it.skip` / `xdescribe` / `describe.skip` in committed code · real PII (real emails, real PANs, real phone numbers) — all data is synthetic · `setTimeout` with magic numbers (wait on observable conditions) · snapshot tests that capture raw `correlationId`, ULIDs, or timestamps without redaction.

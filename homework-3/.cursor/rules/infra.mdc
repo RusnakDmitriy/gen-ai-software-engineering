@@ -1,0 +1,49 @@
+---
+description: Terraform / AWS infrastructure conventions (EU-only)
+globs: infra/**
+alwaysApply: false
+---
+
+# Infrastructure Conventions
+
+## Regions
+
+AWS regions: **`eu-west-1` (primary)**, **`eu-central-1` (warm DR)**. No other region — anywhere. `infra/policies/data-residency.rego` rejects non-EU resources at deploy time; do not bypass with overrides.
+
+## KMS
+
+- Customer-managed keys, one per domain (`alias/lumen-rds`, `alias/lumen-audit-watermarks`, `alias/lumen-dispute-evidence`, `alias/lumen-pseudonymization-salt`, `alias/lumen-secrets`). Annual rotation enabled.
+- Reference keys by **alias**, never key ID — code must not pin a key version.
+
+## Secrets
+
+AWS Secrets Manager / Parameter Store. **Never** commit secrets, including `.env` (`*.env.example` is allowed). Webhook secrets and partner API keys rotate quarterly; code accepts the prior secret for a 24 h grace window (Task **B6**).
+
+## S3
+
+- All buckets: SSE-KMS with a CMK, versioning on, public access blocked.
+- Audit watermark bucket: **Object Lock** with retention = 7 y (financial) / 5 y (access). Cross-region replication within EU only.
+
+## Resource hygiene
+
+Every resource has `kms_key_id` set (Checkov rule). Tag every resource with `Service`, `Owner`, `DataClass`, `Compliance`.
+
+```hcl
+# ✅ GOOD
+resource "aws_s3_bucket_server_side_encryption_configuration" "audit" {
+  bucket = aws_s3_bucket.audit.id
+  rule {
+    apply_server_side_encryption_by_default {
+      sse_algorithm     = "aws:kms"
+      kms_master_key_id = "alias/lumen-audit-watermarks"
+    }
+  }
+}
+
+# ❌ BAD — no KMS, no alias
+encryption_algorithm = "AES256"
+```
+
+## Forbidden
+
+IAM policies with `Action: "*"` or `Resource: "*"` · resources without tags · new egress destinations without `infra/policies/egress-allow-list.yaml` update · region pinning by string (use a variable + the allow-list) · `aws:` SDK calls outside the documented egress proxy.
