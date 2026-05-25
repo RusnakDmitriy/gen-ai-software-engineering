@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tickets>
+  <ticket>
+    <customer_id>cust_xml_001</customer_id>
+    <customer_email>alice@example.com</customer_email>
+    <customer_name>Alice Johnson</customer_name>
+    <subject>Cannot access account login issue</subject>
+    <description>I have been locked out of my account for 2 days. All login attempts result in an error.</description>
+    <category>account_access</category>
+    <priority>urgent</priority>
+    <status>new</status>
+    <tags>login,urgent,critical</tags>
+    <metadata>
+      <source>web_form</source>
+      <browser>Chrome 124</browser>
+      <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>cust_xml_002</customer_id>
+    <customer_email>bob@company.com</customer_email>
+    <customer_name>Bob Smith</customer_name>
+    <subject>Billing charge duplicate issue</subject>
+    <description>I was charged twice for my monthly subscription. I need an immediate refund.</description>
+    <category>billing_question</category>
+    <priority>high</priority>
+    <status>new</status>
+    <tags>billing,duplicate,refund</tags>
+    <metadata>
+      <source>api</source>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>cust_xml_003</customer_id>
+    <customer_email>carol@tech.com</customer_email>
+    <customer_name>Carol Davis</customer_name>
+    <subject>Production API down critical emergency</subject>
+    <description>The entire API service is down. Production is blocked. This is a critical emergency.</description>
+    <category>technical_issue</category>
+    <priority>urgent</priority>
+    <status>new</status>
+    <tags>production,critical,emergency,urgent</tags>
+    <metadata>
+      <source>api</source>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>cust_xml_004</customer_id>
+    <customer_email>dave@example.com</customer_email>
+    <customer_name>Dave Wilson</customer_name>
+    <subject>Feature request dark mode support</subject>
+    <description>Please implement dark mode across the entire application. Users have requested this for better UX.</description>
+    <category>feature_request</category>
+    <priority>low</priority>
+    <status>new</status>
+    <tags>feature,ui,dark-mode</tags>
+    <metadata>
+      <source>web_form</source>
+      <device_type>mobile</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>cust_xml_005</customer_id>
+    <customer_email>emma@domain.com</customer_email>
+    <customer_name>Emma Brown</customer_name>
+    <subject>Bug report checkout form data loss</subject>
+    <description>When changing payment methods in checkout, all form data is lost. Steps: 1. Fill form 2. Change payment 3. Data gone.</description>
+    <category>bug_report</category>
+    <priority>high</priority>
+    <status>new</status>
+    <tags>bug,checkout,blocking</tags>
+    <metadata>
+      <source>web_form</source>
+      <browser>Firefox 123</browser>
+      <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>cust_xml_006</customer_id>
+    <customer_email>frank@company.com</customer_email>
+    <customer_name>Frank Miller</customer_name>
+    <subject>Two-factor authentication 2FA failure security</subject>
+    <description>The 2FA codes I receive are always invalid. I cannot access my account. This is a critical security issue.</description>
+    <category>account_access</category>
+    <priority>urgent</priority>
+    <status>new</status>
+    <tags>2fa,security,urgent,critical</tags>
+    <metadata>
+      <source>web_form</source>
+      <device_type>mobile</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>cust_xml_007</customer_id>
+    <customer_email>grace@tech.com</customer_email>
+    <customer_name>Grace Lee</customer_name>
+    <subject>Payment gateway timeout during checkout</subject>
+    <description>The payment gateway is timing out. Transaction status is unknown but my account was charged.</description>
+    <category>billing_question</category>
+    <priority>urgent</priority>
+    <status>new</status>
+    <tags>payment,timeout,critical,urgent</tags>
+    <metadata>
+      <source>api</source>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>cust_xml_008</customer_id>
+    <customer_email>henry@example.com</customer_email>
+    <customer_name>Henry Taylor</customer_name>
+    <subject>Mobile app crashes on startup iOS</subject>
+    <description>The iOS app version 2.1.0 crashes immediately on launch. This is blocking all mobile users.</description>
+    <category>technical_issue</category>
+    <priority>high</priority>
+    <status>new</status>
+    <tags>crash,mobile,ios,blocking</tags>
+    <metadata>
+      <source>web_form</source>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>cust_xml_009</customer_id>
+    <customer_email>iris@company.com</customer_email>
+    <customer_name>Iris Anderson</customer_name>
+    <subject>Email verification link already expired</subject>
+    <description>The email verification link in signup has already expired by the time I receive it.</description>
+    <category>account_access</category>
+    <priority>high</priority>
+    <status>new</status>
+    <tags>email,verification,signup</tags>
+    <metadata>
+      <source>web_form</source>
+      <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>cust_xml_010</customer_id>
+    <customer_email>jack@domain.com</customer_email>
+    <customer_name>Jack Thomas</customer_name>
+    <subject>Add API pagination support feature</subject>
+    <description>The API returns too many results at once. Pagination would improve performance significantly.</description>
+    <category>feature_request</category>
+    <priority>medium</priority>
+    <status>new</status>
+    <tags>feature,api,pagination</tags>
+    <metadata>
+      <source>api</source>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>cust_xml_011</customer_id>
+    <customer_email>kate@tech.com</customer_email>
+    <customer_name>Kate White</customer_name>
+    <subject>Database connection pool exhausted error</subject>
+    <description>Getting database connection errors. The connection pool appears to be exhausted.</description>
+    <category>technical_issue</category>
+    <priority>high</priority>
+    <status>new</status>
+    <tags>database,error,connection</tags>
+    <metadata>
+      <source>api</source>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>cust_xml_012</customer_id>
+    <customer_email>leo@example.com</customer_email>
+    <customer_name>Leo Garcia</customer_name>
+    <subject>Refund pending for 20 days no update</subject>
+    <description>My refund was requested 20 days ago. No updates have been provided on status.</description>
+    <category>billing_question</category>
+    <priority>high</priority>
+    <status>new</status>
+    <tags>refund,pending,delay</tags>
+    <metadata>
+      <source>web_form</source>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>cust_xml_013</customer_id>
+    <customer_email>mia@company.com</customer_email>
+    <customer_name>Mia Martinez</customer_name>
+    <subject>Password reset email never arrives important</subject>
+    <description>I have requested a password reset multiple times but never receive the email. I cannot access my account.</description>
+    <category>account_access</category>
+    <priority>high</priority>
+    <status>new</status>
+    <tags>password,reset,email</tags>
+    <metadata>
+      <source>web_form</source>
+      <browser>Safari 17</browser>
+      <device_type>tablet</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>cust_xml_014</customer_id>
+    <customer_email>noah@tech.com</customer_email>
+    <customer_name>Noah Harris</customer_name>
+    <subject>Invoice generation timeout server error</subject>
+    <description>The invoice generation process times out with a server 500 error when processing large orders.</description>
+    <category>billing_question</category>
+    <priority>high</priority>
+    <status>new</status>
+    <tags>invoice,error,timeout</tags>
+    <metadata>
+      <source>api</source>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>cust_xml_015</customer_id>
+    <customer_email>olivia@example.com</customer_email>
+    <customer_name>Olivia Clark</customer_name>
+    <subject>Session timeout too quick 5 minutes</subject>
+    <description>The session expires after only 5 minutes. This is too short for our workflow needs. ASAP needs fixing.</description>
+    <category>account_access</category>
+    <priority>medium</priority>
+    <status>new</status>
+    <tags>session,timeout,workflow,asap</tags>
+    <metadata>
+      <source>web_form</source>
+      <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>cust_xml_016</customer_id>
+    <customer_email>peter@company.com</customer_email>
+    <customer_name>Peter Lewis</customer_name>
+    <subject>Profile picture upload shows success but no image</subject>
+    <description>When I upload a profile picture, the system shows success but no image appears on my profile.</description>
+    <category>technical_issue</category>
+    <priority>medium</priority>
+    <status>new</status>
+    <tags>upload,profile,bug</tags>
+    <metadata>
+      <source>web_form</source>
+      <browser>Edge 124</browser>
+      <device_type>mobile</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>cust_xml_017</customer_id>
+    <customer_email>quinn@domain.com</customer_email>
+    <customer_name>Quinn Walker</customer_name>
+    <subject>Feature request real-time notifications</subject>
+    <description>It would be beneficial to have real-time notifications instead of relying only on email for alerts.</description>
+    <category>feature_request</category>
+    <priority>low</priority>
+    <status>new</status>
+    <tags>feature,notifications,realtime</tags>
+    <metadata>
+      <source>api</source>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>cust_xml_018</customer_id>
+    <customer_email>rachel@tech.com</customer_email>
+    <customer_name>Rachel Young</customer_name>
+    <subject>Cannot cancel subscription no option found</subject>
+    <description>I want to cancel my subscription but cannot find the cancellation option anywhere in the settings.</description>
+    <category>billing_question</category>
+    <priority>medium</priority>
+    <status>new</status>
+    <tags>subscription,cancel,billing</tags>
+    <metadata>
+      <source>web_form</source>
+      <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>cust_xml_019</customer_id>
+    <customer_email>sam@example.com</customer_email>
+    <customer_name>Sam Hernandez</customer_name>
+    <subject>Search returns wrong results filters broken</subject>
+    <description>The search functionality returns irrelevant results. Applied filters do not work properly.</description>
+    <category>technical_issue</category>
+    <priority>medium</priority>
+    <status>new</status>
+    <tags>search,bug,filtering</tags>
+    <metadata>
+      <source>web_form</source>
+      <browser>Chrome 124</browser>
+      <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>cust_xml_020</customer_id>
+    <customer_email>tina@company.com</customer_email>
+    <customer_name>Tina King</customer_name>
+    <subject>Add export functionality for reports PDF Excel</subject>
+    <description>We need the ability to export reports as PDF and Excel files. This feature is critical for business operations.</description>
+    <category>feature_request</category>
+    <priority>medium</priority>
+    <status>new</status>
+    <tags>feature,export,reports</tags>
+    <metadata>
+      <source>api</source>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>cust_xml_021</customer_id>
+    <customer_email>uber@tech.com</customer_email>
+    <customer_name>Uber Scott</customer_name>
+    <subject>Two-factor authentication 2FA not available</subject>
+    <description>I need to enable 2FA for better security but cannot find this option. This is essential for enterprise.</description>
+    <category>feature_request</category>
+    <priority>high</priority>
+    <status>new</status>
+    <tags>feature,security,2fa</tags>
+    <metadata>
+      <source>web_form</source>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>cust_xml_022</customer_id>
+    <customer_email>victor@domain.com</customer_email>
+    <customer_name>Victor Green</customer_name>
+    <subject>Login page shows blank screen cannot access</subject>
+    <description>The login page is completely blank. I cannot access my account. This is a critical blocking issue.</description>
+    <category>account_access</category>
+    <priority>urgent</priority>
+    <status>new</status>
+    <tags>login,critical,blocking,urgent</tags>
+    <metadata>
+      <source>web_form</source>
+      <device_type>mobile</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>cust_xml_023</customer_id>
+    <customer_email>wendy@example.com</customer_email>
+    <customer_name>Wendy Adams</customer_name>
+    <subject>Export to CSV button not working</subject>
+    <description>The CSV export button is non-functional. No file is generated when I click it.</description>
+    <category>technical_issue</category>
+    <priority>medium</priority>
+    <status>new</status>
+    <tags>export,csv,bug</tags>
+    <metadata>
+      <source>web_form</source>
+      <browser>Firefox 123</browser>
+      <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>cust_xml_024</customer_id>
+    <customer_email>xavier@company.com</customer_email>
+    <customer_name>Xavier Nelson</customer_name>
+    <subject>Cannot create account during signup registration</subject>
+    <description>The registration form shows an error when I try to sign up. It says the username already exists.</description>
+    <category>account_access</category>
+    <priority>medium</priority>
+    <status>new</status>
+    <tags>signup,account,error</tags>
+    <metadata>
+      <source>web_form</source>
+      <device_type>tablet</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>cust_xml_025</customer_id>
+    <customer_email>yara@tech.com</customer_email>
+    <customer_name>Yara Carter</customer_name>
+    <subject>Billing cycle unclear unexpected charge date</subject>
+    <description>The billing cycle information is confusing. I was charged on an unexpected date not matching my signup date.</description>
+    <category>billing_question</category>
+    <priority>medium</priority>
+    <status>new</status>
+    <tags>billing,cycle,confusion</tags>
+    <metadata>
+      <source>web_form</source>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>cust_xml_026</customer_id>
+    <customer_email>zack@example.com</customer_email>
+    <customer_name>Zack Mitchell</customer_name>
+    <subject>Feature suggestion improved sort options</subject>
+    <description>Please add more sorting options to product listings for better navigation and discovery.</description>
+    <category>feature_request</category>
+    <priority>low</priority>
+    <status>new</status>
+    <tags>feature,sorting,product</tags>
+    <metadata>
+      <source>api</source>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>cust_xml_027</customer_id>
+    <customer_email>alice3@company.com</customer_email>
+    <customer_name>Alice White</customer_name>
+    <subject>Cannot delete my account from settings</subject>
+    <description>I want to permanently delete my account but there is no delete option in the settings menu.</description>
+    <category>account_access</category>
+    <priority>medium</priority>
+    <status>new</status>
+    <tags>account,delete,privacy</tags>
+    <metadata>
+      <source>web_form</source>
+      <browser>Safari 17</browser>
+      <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>cust_xml_028</customer_id>
+    <customer_email>bob3@domain.com</customer_email>
+    <customer_name>Bob Lee</customer_name>
+    <subject>Database error saving user preferences</subject>
+    <description>A database error occurs whenever I try to save my notification preferences. Error 500 shown.</description>
+    <category>technical_issue</category>
+    <priority>medium</priority>
+    <status>new</status>
+    <tags>database,error,preferences</tags>
+    <metadata>
+      <source>web_form</source>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>cust_xml_029</customer_id>
+    <customer_email>carol3@tech.com</customer_email>
+    <customer_name>Carol Rivera</customer_name>
+    <subject>Add support for webhook notifications</subject>
+    <description>We need webhook support for real-time notifications to integrate with our systems.</description>
+    <category>feature_request</category>
+    <priority>high</priority>
+    <status>new</status>
+    <tags>feature,webhook,integration</tags>
+    <metadata>
+      <source>api</source>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>cust_xml_030</customer_id>
+    <customer_email>dave3@example.com</customer_email>
+    <customer_name>Dave Phillips</customer_name>
+    <subject>Critical production database connection failure</subject>
+    <description>The database connection is completely down. The entire system is non-operational. This is critical emergency.</description>
+    <category>technical_issue</category>
+    <priority>urgent</priority>
+    <status>new</status>
+    <tags>database,critical,production,emergency,urgent</tags>
+    <metadata>
+      <source>api</source>
+    </metadata>
+  </ticket>
+</tickets>

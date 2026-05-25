@@ -1,0 +1,20 @@
+[
+  {
+    "customer_id": "cust_invalid_001",
+    "customer_email": "alice@example.com",
+    "customer_name": "Alice",
+    "subject": "Test",
+    "description": "Valid entry",
+    "category": "invalid_category",
+    "priority": "not_a_priority"
+  },
+  {
+    "customer_id": "cust_invalid_002",
+    "customer_email": "bob@example.com",
+    "customer_name": "Bob",
+    "subject": "Test 2",
+    "description": "Another entry",
+    "category": "wrong_enum",
+    "priority": "not_valid"
+  }
+]

@@ -1,0 +1,6 @@
+customer_id,customer_email,customer_name,subject,description
+cust_invalid_001,not-an-email,Test User,Invalid email test,This is a test with invalid email format
+cust_invalid_002,user@domain,Another User,Another bad email,This should fail validation
+cust_invalid_003,@nodomain.com,Third User,Missing domain,This email has no proper format
+cust_invalid_004,user name@example.com,Fourth User,Space in email,This email has spaces
+cust_invalid_005,user@.com,Fifth User,Invalid domain,This email has invalid domain
