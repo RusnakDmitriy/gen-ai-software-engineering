@@ -23,7 +23,7 @@ export const errorHandler = (
     error: {
       code: 'INTERNAL_ERROR',
       message: 'An unexpected error occurred',
-      ...(env.NODE_ENV !== 'production' && { stack: error.stack }),
+      ...(env.NODE_ENV === 'development' && env.EXPOSE_STACK_TRACE === true && { stack: error.stack }),
     },
   });
 };

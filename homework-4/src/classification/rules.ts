@@ -58,7 +58,7 @@ export const PRIORITY_RULES: Record<Priority, KeywordRule[]> = {
     { pattern: /\bproduction\s+issue\b/i, weight: 3 },
     { pattern: /\bsecurity\b/i, weight: 2 },
     { pattern: /\bbreach\b/i, weight: 3 },
-    { pattern: /\nemergency\b/i, weight: 3 },
+    { pattern: /\bemergency\b/i, weight: 3 },
   ],
   [Priority.HIGH]: [
     { pattern: /\bimportant\b/i, weight: 2 },

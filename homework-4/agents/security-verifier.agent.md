@@ -7,12 +7,13 @@ description: >-
   comparisons, missing validation, unsafe deps, XSS/CSRF), rates findings
   CRITICAL/HIGH/MEDIUM/LOW/INFO, and writes `research/security-report.md`.
   Report-only — no code edits.
-model: claude-4-opus
+model: claude-4.6-opus-high-thinking
 model_rationale: >-
   Security review needs deep reasoning about implicit data flows, threat
-  models, and call-site context. A top-tier reasoning model (Claude 4 Opus)
-  is used here even at higher cost because false negatives in this stage
-  ship vulnerabilities to production.
+  models, and call-site context. A top-tier Opus thinking model
+  (`claude-4.6-opus-high-thinking` per Cursor CLI) is used here even at
+  higher cost because false negatives in this stage ship vulnerabilities
+  to production.
 stage: 4
 pipeline_position: "4 of 5"
 previous_agent: bug-fixer

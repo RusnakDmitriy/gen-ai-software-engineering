@@ -8,7 +8,7 @@ import type {
 import { ticketsRepository } from '../repositories/tickets.repository.js';
 import { classificationService } from './classification.service.js';
 import { logger } from '../config/logger.js';
-import { ClassificationOverriddenError } from '../domain/errors.js';
+import { AppError, ClassificationOverriddenError } from '../domain/errors.js';
 
 export class TicketsService {
   async create(data: TicketCreate, options?: { autoClassify?: boolean }): Promise<Ticket> {
@@ -55,6 +55,22 @@ export class TicketsService {
     if (data.status !== undefined && ['resolved', 'closed'].includes(data.status)) {
       if (data.resolved_at === undefined) {
         payload = { ...data, resolved_at: new Date() };
+      }
+    } else if (data.status !== undefined && ['new', 'in_progress'].includes(data.status)) {
+      if (data.resolved_at === undefined) {
+        payload = { ...data, resolved_at: null };
+      }
+    }
+
+    if (data.resolved_at && data.resolved_at !== null) {
+      const existing = await ticketsRepository.findByIdOrThrow(id);
+      if (data.resolved_at < existing.created_at) {
+        throw new AppError(
+          'VALIDATION_ERROR',
+          'resolved_at cannot be before created_at',
+          400,
+          { resolved_at: data.resolved_at, created_at: existing.created_at }
+        );
       }
     }
 

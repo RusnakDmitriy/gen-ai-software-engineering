@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { TicketCreateSchema, TicketQuerySchema } from '../../src/domain/ticket.schema.js';
+import { TicketCreateSchema, TicketQuerySchema, TicketUpdateSchema } from '../../src/domain/ticket.schema.js';
 import { Category, Priority, Status } from '../../src/domain/ticket.types.js';
 
 describe('Ticket Model - TicketCreateSchema', () => {
@@ -166,5 +166,29 @@ describe('Ticket Model - TicketQuerySchema', () => {
       pageSize: 101,
     });
     expect(result.success).toBe(false);
+  });
+});
+
+describe('Ticket Model - TicketUpdateSchema', () => {
+  it('coerces ISO string resolved_at to Date', () => {
+    const result = TicketUpdateSchema.safeParse({
+      resolved_at: '2026-05-25T12:00:00.000Z',
+    });
+    expect(result.success).toBe(true);
+    if (result.success) {
+      expect(result.data.resolved_at).toBeInstanceOf(Date);
+    }
+  });
+
+  it('rejects resolved_at in the future', () => {
+    const future = new Date(Date.now() + 60_000);
+    const result = TicketUpdateSchema.safeParse({ resolved_at: future });
+    expect(result.success).toBe(false);
+  });
+
+  it('accepts resolved_at in the past', () => {
+    const past = new Date(Date.now() - 60_000);
+    const result = TicketUpdateSchema.safeParse({ resolved_at: past });
+    expect(result.success).toBe(true);
   });
 });

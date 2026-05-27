@@ -36,12 +36,21 @@ export const TicketUpdateSchema = TicketCreateSchema.partial().omit({
   customer_email: true,
   customer_name: true,
 }).extend({
-  resolved_at: z.date().optional().nullable(),
+  resolved_at: z.coerce.date().optional().nullable(),
   classification_confidence: z.number().optional().nullable(),
   classification_reasoning: z.string().optional().nullable(),
   classification_keywords: z.array(z.string()).optional().nullable(),
   classification_overridden: z.boolean().optional(),
-});
+}).refine(
+  (data) => {
+    if (data.resolved_at && data.resolved_at !== null) {
+      const now = new Date();
+      return data.resolved_at <= now;
+    }
+    return true;
+  },
+  { message: 'resolved_at cannot be in the future' }
+);
 
 export type TicketUpdate = z.infer<typeof TicketUpdateSchema>;
 
@@ -49,7 +58,7 @@ export const TicketSchema = TicketCreateSchema.extend({
   id: z.string().min(1),
   created_at: z.date(),
   updated_at: z.date(),
-  resolved_at: z.date().nullable(),
+  resolved_at: z.coerce.date().nullable(),
   classification_confidence: z.number().min(0).max(1).nullable(),
   classification_reasoning: z.string().nullable(),
   classification_keywords: z.array(z.string()).nullable(),

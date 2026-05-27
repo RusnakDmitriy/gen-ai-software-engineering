@@ -103,4 +103,17 @@ describe('errorHandler middleware', () => {
     errorHandler('not an Error object', {} as Request, res, vi.fn() as NextFunction);
     expect(status).toHaveBeenCalledWith(500);
   });
+
+  it('omits stack trace when NODE_ENV is test', () => {
+    const json = vi.fn();
+    const status = vi.fn().mockReturnValue({ json });
+    const res = { status, json } as unknown as Response;
+    const err = new Error('boom');
+    err.stack = 'Error: boom\n    at test.ts:1:1';
+
+    errorHandler(err, {} as Request, res, vi.fn() as NextFunction);
+
+    const body = json.mock.calls[0][0] as { error: { stack?: string } };
+    expect(body.error.stack).toBeUndefined();
+  });
 });

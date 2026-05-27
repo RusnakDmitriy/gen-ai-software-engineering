@@ -14,7 +14,9 @@ const EnvSchema = z.object({
   RATE_LIMIT_MAX: z.coerce.number().default(100),
   MAX_UPLOAD_SIZE_MB: z.coerce.number().default(10),
   AUTO_CLASSIFY_DEFAULT: z.coerce.boolean().default(false),
-  CORS_ORIGIN: z.string().default('*'),
+  // SECURITY: Set to specific origin(s) in production. Comma-separated list supported by app.ts if needed.
+  CORS_ORIGIN: z.string().default('http://localhost:3000'),
+  EXPOSE_STACK_TRACE: z.coerce.boolean().default(false),
 });
 
 const parsed = EnvSchema.safeParse(process.env);

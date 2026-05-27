@@ -21,7 +21,17 @@ const pinoInstance = pino({
       statusCode: res.statusCode,
     }),
   },
-  redact: ['*.customer_email', '*.email', '*.password', 'authorization'],
+  redact: [
+    '*.customer_email',
+    '*.email',
+    '*.password',
+    '*.customer_name',
+    '*.subject',
+    '*.description',
+    '*.url',
+    'authorization',
+    'req.url',
+  ],
 });
 
 export const logger = pinoInstance;

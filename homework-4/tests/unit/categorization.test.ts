@@ -77,4 +77,10 @@ describe('Prioritizer', () => {
     expect(result.confidence).toBe(0.5);
     expect(result.matchedKeywords.length).toBeGreaterThan(1);
   });
+
+  it('prioritizes urgent when emergency appears at start of text', () => {
+    const result = prioritize('emergency production outage needs immediate help');
+    expect(result.priority).toBe(Priority.URGENT);
+    expect(result.matchedKeywords).toContain('emergency');
+  });
 });

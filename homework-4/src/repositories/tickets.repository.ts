@@ -172,7 +172,10 @@ export class TicketsRepository {
     if (status) where.status = status;
     if (assigned_to) where.assigned_to = assigned_to;
     if (q) {
-      where.OR = [{ subject: { contains: q } }, { description: { contains: q } }];
+      where.OR = [
+        { subject: { contains: q, mode: 'insensitive' } },
+        { description: { contains: q, mode: 'insensitive' } }
+      ];
     }
 
     const sortKey = isSortableField(sort) ? sort : 'created_at';

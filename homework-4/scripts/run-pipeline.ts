@@ -83,6 +83,19 @@ Stages (in order):
 `);
 }
 
+/** Maps legacy homework model ids to current Cursor CLI model ids. */
+const MODEL_ALIASES: Record<string, string> = {
+  'claude-4-opus': 'claude-4.6-opus-high-thinking',
+};
+
+function resolveModel(configured: string): string {
+  const resolved = MODEL_ALIASES[configured] ?? configured;
+  if (resolved !== configured) {
+    console.log(`  Model alias: ${configured} → ${resolved}`);
+  }
+  return resolved;
+}
+
 function resolveAgentBinary(): string {
   const candidates = [
     process.env.CURSOR_AGENT_BIN,
@@ -272,7 +285,8 @@ async function main(): Promise<void> {
 
     console.log('\n' + '─'.repeat(60));
     console.log(`  Stage ${frontmatter.stage}/5 — ${frontmatter.name}`);
-    console.log(`  Model: ${frontmatter.model}`);
+    const model = resolveModel(frontmatter.model);
+    console.log(`  Model: ${model}`);
     console.log(`  Agent: agents/${file}`);
     if (frontmatter.skills.length) {
       console.log(`  Skills: ${frontmatter.skills.join(', ')}`);
@@ -287,7 +301,7 @@ async function main(): Promise<void> {
       artifactTrail.filter((p) => p !== PIPELINE_PREREQUISITE || frontmatter.stage === 1),
     );
 
-    const exitCode = await runAgentCli(binary, frontmatter.model, prompt, opts.dryRun);
+    const exitCode = await runAgentCli(binary, model, prompt, opts.dryRun);
     if (exitCode !== 0 && !opts.dryRun) {
       console.error(`\n✗ Stage ${frontmatter.stage} (${frontmatter.name}) exited with code ${exitCode}`);
       process.exit(exitCode);
