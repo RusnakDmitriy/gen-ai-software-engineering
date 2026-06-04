@@ -1,0 +1,40 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Ticket {
+  id                          String    @id @default(cuid())
+  customer_id                 String
+  customer_email              String
+  customer_name               String
+  subject                     String
+  description                 String
+  category                    String    @default("other")
+  priority                    String    @default("medium")
+  status                      String    @default("new")
+  created_at                  DateTime  @default(now())
+  updated_at                  DateTime  @updatedAt
+  resolved_at                 DateTime?
+  assigned_to                 String?
+  tags                        String    @default("[]")
+  source                      String?
+  browser                     String?
+  device_type                 String?
+  classification_confidence   Float?
+  classification_reasoning    String?
+  classification_keywords     String?
+  classification_overridden   Boolean   @default(false)
+
+  @@index([category])
+  @@index([priority])
+  @@index([status])
+  @@index([created_at])
+}

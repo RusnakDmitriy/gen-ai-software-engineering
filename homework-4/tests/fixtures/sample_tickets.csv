@@ -1,0 +1,51 @@
+customer_id,customer_email,customer_name,subject,description,category,priority,status,tags,source,browser,device_type
+cust_001,alice@example.com,Alice Johnson,Cannot access my account,I have been unable to log in for 2 days and the password reset email never arrives,account_access,urgent,new,login|password|urgent,web_form,Chrome 124,desktop
+cust_002,bob@smith.com,Bob Smith,Payment declined,My credit card payment was declined twice and I need to update my payment method,billing_question,high,new,payment|billing,web_form,Firefox 123,desktop
+cust_003,carol@tech.com,Carol Davis,Application keeps crashing,The app crashes whenever I try to upload files with memory overflow errors,technical_issue,high,new,crash|upload|error,web_form,Safari 17,mobile
+cust_004,dave@example.com,Dave Wilson,Feature request dark mode,Please add a dark mode option to the application for better usability at night,feature_request,low,new,feature|ui|dark-mode,web_form,Chrome 124,desktop
+cust_005,emma@company.com,Emma Brown,Bug report login form,The login form does not validate email addresses correctly allowing numbers in email field,bug_report,medium,new,bug|validation|login,api,,
+cust_006,frank@email.com,Frank Miller,Production API down critical,The API server is not responding and all customer transactions are blocked,technical_issue,urgent,new,critical|production|api|urgent,api,,
+cust_007,grace@domain.com,Grace Lee,Refund request,I was charged twice for my subscription and need a refund for the duplicate charge,billing_question,high,new,refund|billing|duplicate,web_form,Edge 124,tablet
+cust_008,henry@test.com,Henry Taylor,Cannot create account,The registration form shows an error when I try to sign up saying username already exists,account_access,medium,new,signup|account|error,web_form,Chrome 124,desktop
+cust_009,iris@work.com,Iris Anderson,Password reset not working,I requested a password reset but never received the email after waiting 24 hours,account_access,high,new,password|reset|email,web_form,Firefox 123,mobile
+cust_010,jack@company.com,Jack Thomas,Invoice not received,I completed my payment yesterday but have not received an invoice or receipt yet,billing_question,medium,new,invoice|payment|receipt,web_form,Safari 17,desktop
+cust_011,kate@email.com,Kate White,Two-factor authentication issue,The 2FA code I received is invalid and I am locked out of my account,account_access,urgent,new,2fa|security|urgent,web_form,Chrome 124,desktop
+cust_012,leo@domain.com,Leo Garcia,Feature suggestion sorting,Could you add a sorting feature to the product list for better navigation,feature_request,low,new,feature|sorting|product,web_form,,mobile
+cust_013,mia@test.com,Mia Martinez,Performance issue slow loading,The dashboard takes 30 seconds to load affecting my productivity,technical_issue,high,new,performance|slow|loading,api,,
+cust_014,noah@work.com,Noah Harris,Data export not working,The export to CSV button does not function and I need to export my transaction history,technical_issue,medium,new,export|csv|bug,web_form,Edge 124,desktop
+cust_015,olivia@company.com,Olivia Clark,Subscription cancellation,I want to cancel my subscription but cannot find the cancellation option in settings,billing_question,medium,new,subscription|cancel,web_form,Firefox 123,desktop
+cust_016,peter@email.com,Peter Lewis,Mobile app crashes,The iOS app keeps crashing on startup with version 2.1.0,technical_issue,high,new,crash|mobile|ios,api,,
+cust_017,quinn@domain.com,Quinn Walker,Login page broken,The login page shows a blank screen and I cannot access my account,account_access,urgent,new,login|critical|urgent,web_form,Chrome 124,mobile
+cust_018,rachel@test.com,Rachel Young,Missing transaction record,A transaction from yesterday is missing from my account history,billing_question,high,new,transaction|missing|billing,web_form,Safari 17,desktop
+cust_019,sam@work.com,Sam Hernandez,API documentation typo,The API documentation has several typos in the authentication section,feature_request,low,new,documentation|api,api,,
+cust_020,tina@company.com,Tina King,Database error message,I got a database error when trying to save my profile changes,technical_issue,medium,new,database|error|save,web_form,Edge 124,desktop
+cust_021,uber@email.com,Uber Scott,Feature email notifications,Can you add email notifications for important account changes,feature_request,low,new,feature|notifications|email,web_form,Chrome 124,desktop
+cust_022,victor@domain.com,Victor Green,Payment gateway timeout,The payment gateway timed out during checkout and transaction status is unknown,billing_question,urgent,new,payment|timeout|critical|urgent,web_form,Firefox 123,desktop
+cust_023,wendy@test.com,Wendy Adams,Profile picture not updating,My profile picture upload failed but the system says success with no image appearing,technical_issue,medium,new,profile|upload|bug,web_form,Safari 17,mobile
+cust_024,xavier@work.com,Xavier Nelson,Security concern password visible,I found that passwords are visible in the browser history which is a major security issue,technical_issue,urgent,new,security|critical|password|urgent,web_form,Chrome 124,desktop
+cust_025,yara@company.com,Yara Carter,Billing cycle confusion,The billing cycle information is unclear and I was charged on an unexpected date,billing_question,medium,new,billing|cycle|confusion,web_form,Edge 124,tablet
+cust_026,zack@email.com,Zack Mitchell,Feature dark theme,Please implement a system-wide dark theme option,feature_request,low,new,feature|theme|dark,web_form,Firefox 123,desktop
+cust_027,alice2@domain.com,Alice White,Cannot delete account,There is no option to delete my account in the settings menu,account_access,medium,new,account|delete,web_form,Chrome 124,desktop
+cust_028,bob2@test.com,Bob Lee,Email verification stuck,The email verification process is stuck and I cannot complete registration,account_access,high,new,email|verification|signup,web_form,Safari 17,mobile
+cust_029,carol2@work.com,Carol Rivera,Refund status unknown,I submitted a refund request 10 days ago and have no update on status,billing_question,medium,new,refund|status|billing,web_form,Edge 124,desktop
+cust_030,dave2@company.com,Dave Phillips,Blocking issue urgent,Our entire team cannot access the platform and work is completely blocked,technical_issue,urgent,new,blocking|production|urgent,api,,
+cust_031,emma2@email.com,Emma Campbell,Minor cosmetic issue,There is a small spacing issue on the login page,feature_request,low,new,cosmetic|ui|minor,web_form,Chrome 124,desktop
+cust_032,frank2@domain.com,Frank Parker,Two way sync not working,Data synchronization between devices is not working properly,technical_issue,high,new,sync|bug|data,web_form,Firefox 123,mobile
+cust_033,grace2@test.com,Grace Evans,Invoice generation error,The invoice generation process fails with a server error,billing_question,high,new,invoice|error|generation,web_form,Safari 17,desktop
+cust_034,henry2@work.com,Henry Edwards,Suggestion improved search,Could you add filters to the search functionality,feature_request,low,new,feature|search|filter,api,,
+cust_035,iris2@company.com,Iris Collins,Cannot edit profile,The edit profile button is not functional and changes do not save,account_access,medium,new,profile|edit|bug,web_form,Chrome 124,desktop
+cust_036,jack2@email.com,Jack Reyes,ASAP urgent issue,I need immediate assistance with account access ASAP urgently,account_access,urgent,new,urgent|asap|critical|urgent,web_form,Edge 124,tablet
+cust_037,kate2@domain.com,Kate Morris,Minor UI issue,The dropdown menu is slightly misaligned on mobile devices,feature_request,low,new,ui|minor|mobile,web_form,Firefox 123,mobile
+cust_038,leo2@test.com,Leo Rogers,Production emergency,The production server is down and this is an emergency,technical_issue,urgent,new,production|critical|emergency|urgent,api,,
+cust_039,mia2@work.com,Mia Morgan,Suggestion improved UI,The user interface could be more intuitive in several areas,feature_request,low,new,feature|ui|improvement,web_form,Chrome 124,desktop
+cust_040,noah2@company.com,Noah Peterson,Cannot process payment,Payment processing is failing for all transactions,billing_question,urgent,new,payment|critical|blocking|urgent,web_form,Safari 17,desktop
+cust_041,olivia2@email.com,Olivia Gray,Feature API pagination,Could you add pagination to the API responses,feature_request,low,new,feature|api|pagination,api,,
+cust_042,peter2@domain.com,Peter Ramirez,Session timeout too quick,The session timeout is very short and I get logged out too quickly,account_access,medium,new,session|timeout,web_form,Firefox 123,desktop
+cust_043,quinn2@test.com,Quinn James,Blocking workflow issue,This bug is blocking our entire workflow and needs ASAP fixing,technical_issue,high,new,blocking|asap|workflow,web_form,Chrome 124,mobile
+cust_044,rachel2@work.com,Rachel Watson,Refund pending long time,My refund has been pending for 3 weeks without updates,billing_question,high,new,refund|pending|delay,web_form,Edge 124,desktop
+cust_045,sam2@company.com,Sam Brooks,Missing critical feature,The billing export feature mentioned in docs is missing,feature_request,medium,new,feature|export|missing,api,,
+cust_046,tina2@email.com,Tina Kelly,Cosmetic issue minor,The button text is misaligned on certain screen sizes,feature_request,low,new,cosmetic|button|ui,web_form,Safari 17,desktop
+cust_047,uber2@domain.com,Uber Sanders,Import functionality broken,The import tool is not working and file upload fails silently,technical_issue,high,new,import|upload|broken,web_form,Chrome 124,desktop
+cust_048,victor2@test.com,Victor Price,Help with account recovery,I need assistance recovering my account after forgetting security question answers,account_access,high,new,recovery|security|help,web_form,Firefox 123,mobile
+cust_049,wendy2@work.com,Wendy Bennett,Suggestion auto-save,Could you add auto-save functionality to the editor,feature_request,low,new,feature|autosave|editor,web_form,Edge 124,tablet
+cust_050,xavier2@company.com,Xavier Wood,Database connection critical,The database connection is failing and system is critically down,technical_issue,urgent,new,database|critical|connection|urgent,api,,
